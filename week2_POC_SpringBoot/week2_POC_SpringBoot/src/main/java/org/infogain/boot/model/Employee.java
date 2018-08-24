@@ -70,7 +70,7 @@ public class Employee implements Serializable
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", salary=" + salary + ", Address=" + empaddress
+		return "[empId=" + empId + ", empName=" + empName + ", salary=" + salary + ", Address=" + empaddress
 				+ "]";
 	}
 

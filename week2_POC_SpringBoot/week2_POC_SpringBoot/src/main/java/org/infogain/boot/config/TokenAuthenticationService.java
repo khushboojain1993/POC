@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security
             .authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,9 +37,18 @@ class TokenAuthenticationService {
         .compact();
     res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
     RedisUtil.INSTANCE.sadd("Redis_Token", JWT);
-     
+
+   /* redisTemplate.opsForValue().set("Redis_Token", JWT);
+        
     System.out.println(redisTemplate.opsForValue().get("Redis_Token"));
-     
+     */
+    
+   /* ValueOperations<String, String> ops = redisTemplate.opsForValue();
+	String key = "SampleToken";
+	if (!redisTemplate.hasKey(key)) {
+		ops.set(key, "foo");
+	}
+	System.out.println("Found key " + key + ", value=" + ops.get(key));*/
   }
 
   static Authentication getAuthentication(HttpServletRequest request)

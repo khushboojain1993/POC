@@ -21,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-
-
 @RestController
 @RequestMapping(value = "/employee")
 public class MainApp {
@@ -33,7 +29,8 @@ public class MainApp {
 	IEmployeeService employeeService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> getEmployeeById(@PathVariable("id") String id) {
+	public ResponseEntity<?> getEmployeeById(@PathVariable("id") String id) 
+	{
 		Employee emp = employeeService.getEmployeeById(id);
 		if(emp==null)
 		{
@@ -44,7 +41,8 @@ public class MainApp {
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<?> getAllEmployees() {
+	public ResponseEntity<?> getAllEmployees()
+	{
 		List<Employee> list = employeeService.getAllEmployees();
 		if(list.isEmpty() || list.size() == 0) {
 			return new ResponseEntity<String>("No employee exists in the record",HttpStatus.NOT_FOUND);
